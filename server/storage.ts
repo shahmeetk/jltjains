@@ -5,6 +5,7 @@ export interface IStorage {
   getContributorByName(name: string): Promise<Contributor | undefined>;
   createContributor(contributor: InsertContributor): Promise<Contributor>;
   getContributorCount(): Promise<number>;
+  deleteContributor(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -35,6 +36,10 @@ export class MemStorage implements IStorage {
 
   async getContributorCount(): Promise<number> {
     return this.contributors.size;
+  }
+
+  async deleteContributor(id: number): Promise<boolean> {
+    return this.contributors.delete(id);
   }
 }
 

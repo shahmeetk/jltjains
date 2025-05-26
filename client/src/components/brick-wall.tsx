@@ -1,9 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layers, Hammer, Sparkles, Settings, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import type { Contributor } from "@shared/schema";
 
 const brickColors = [
@@ -21,6 +23,30 @@ export default function BrickWall() {
   
   const [showAdmin, setShowAdmin] = useState(false);
   const [sparklingBrick, setSparklingBrick] = useState<number | null>(null);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const deleteContributorMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await apiRequest("DELETE", `/api/contributors/${id}`);
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/contributors"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/contributors/count"] });
+      toast({
+        title: "Contributor removed",
+        description: "The name has been successfully removed from the wall.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to remove contributor",
+        variant: "destructive",
+      });
+    },
+  });
 
   if (isLoading) {
     return (
@@ -41,8 +67,7 @@ export default function BrickWall() {
   }
 
   const handleDeleteContributor = async (id: number) => {
-    // This would need a DELETE endpoint in the backend
-    console.log('Delete contributor:', id);
+    deleteContributorMutation.mutate(id);
   };
 
   const handleSparkle = (id: number) => {

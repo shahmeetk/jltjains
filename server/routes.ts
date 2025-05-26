@@ -53,6 +53,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete a contributor
+  app.delete("/api/contributors/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid contributor ID" });
+      }
+
+      const deleted = await storage.deleteContributor(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Contributor not found" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete contributor" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

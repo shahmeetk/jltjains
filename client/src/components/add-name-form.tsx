@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -44,7 +43,7 @@ export default function AddNameForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
-    
+
     setIsSubmitting(true);
     addContributorMutation.mutate(name.trim());
   };

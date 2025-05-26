@@ -2,8 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ChartLine, Heart, Trophy, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-
-import { useQuery } from "@tanstack/react-query";
 import { Users, Target, Trophy, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";

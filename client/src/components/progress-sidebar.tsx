@@ -152,6 +152,6 @@ export default function ProgressSidebar() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    
   );
 }

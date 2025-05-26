@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ChartLine, Heart, Trophy, Target, Users, TrendingUp } from "lucide-react";
@@ -109,9 +110,6 @@ export default function ProgressSidebar() {
           </Card>
         )}
       </div>
-    </div>
-
-
 
       {/* Motivational Message */}
       <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 text-white border border-gray-200 shadow-xl">

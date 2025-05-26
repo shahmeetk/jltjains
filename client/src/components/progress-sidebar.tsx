@@ -51,33 +51,7 @@ export default function ProgressSidebar() {
         </CardContent>
       </Card>
 
-      {/* Achievement Card */}
-      <Card className="border border-orange-200 shadow-xl bg-gradient-to-br from-orange-50 to-yellow-50">
-        <CardContent className="p-6">
-          <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-3">
-            <Trophy className="text-orange-600 w-5 h-5" />
-            Achievement
-          </h4>
-          <div className="text-center">
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Trophy className="w-12 h-12 mx-auto mb-3 text-orange-500" />
-            </motion.div>
-            <p className="text-sm text-gray-700 font-medium">
-              {percentage >= 100 ? "🎉 Wall Complete!" : 
-               percentage >= 75 ? "🌟 Almost There!" :
-               percentage >= 50 ? "🚀 Halfway Mark!" :
-               percentage >= 25 ? "💪 Great Start!" :
-               "🌱 Just Beginning!"}
-            </p>
-            <div className="mt-2 text-xs text-orange-600 font-semibold">
-              {Math.round(percentage)}% Complete
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+
 
       {/* Motivational Message */}
       <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 text-white border border-gray-200 shadow-xl">

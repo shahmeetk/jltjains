@@ -72,6 +72,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update contributor name
+  app.patch("/api/contributors/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid contributor ID" });
+      }
+
+      const { name } = req.body;
+      if (!name || typeof name !== 'string') {
+        return res.status(400).json({ message: "Name is required" });
+      }
+
+      // Basic validation for name
+      if (name.length < 2 || name.length > 30) {
+        return res.status(400).json({ message: "Name must be between 2 and 30 characters" });
+      }
+
+      const updatedContributor = await storage.updateContributorName(id, name);
+      if (!updatedContributor) {
+        return res.status(404).json({ message: "Contributor not found" });
+      }
+
+      res.json(updatedContributor);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update contributor" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

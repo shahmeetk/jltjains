@@ -21,8 +21,8 @@ export default function Home() {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content Area */}
           <div className="lg:col-span-3">
-            <AddNameForm />
             <BrickWall />
+            <AddNameForm />
           </div>
 
           {/* Sidebar */}

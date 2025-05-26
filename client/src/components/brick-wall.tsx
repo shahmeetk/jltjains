@@ -1,17 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { Layers, Hammer, Sparkles, Settings, Trash2 } from "lucide-react";
+import { Layers, Hammer, Sparkles, Settings, Trash2, Edit2, Check, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { Contributor } from "@shared/schema";
 
+// Professional corporate colors inspired by Jain Allied Science branding
 const brickColors = [
-  'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 
-  'bg-purple-500', 'bg-pink-500', 'bg-orange-500', 'bg-cyan-500',
-  'bg-emerald-500', 'bg-rose-500', 'bg-indigo-500', 'bg-teal-500'
+  'bg-blue-600', 'bg-indigo-600', 'bg-cyan-600', 'bg-teal-600', 
+  'bg-emerald-600', 'bg-green-600', 'bg-blue-700', 'bg-indigo-700',
+  'bg-cyan-700', 'bg-teal-700', 'bg-emerald-700', 'bg-green-700'
 ];
 
 const getBrickColor = (index: number) => brickColors[index % brickColors.length];
@@ -23,6 +25,9 @@ export default function BrickWall() {
   
   const [showAdmin, setShowAdmin] = useState(false);
   const [sparklingBrick, setSparklingBrick] = useState<number | null>(null);
+  const [editingBrick, setEditingBrick] = useState<number | null>(null);
+  const [editingName, setEditingName] = useState("");
+  const [maxContributors, setMaxContributors] = useState(54);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 

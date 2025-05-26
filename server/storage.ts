@@ -6,6 +6,7 @@ export interface IStorage {
   createContributor(contributor: InsertContributor): Promise<Contributor>;
   getContributorCount(): Promise<number>;
   deleteContributor(id: number): Promise<boolean>;
+  updateContributorName(id: number, name: string): Promise<Contributor | null>;
 }
 
 export class MemStorage implements IStorage {
@@ -40,6 +41,17 @@ export class MemStorage implements IStorage {
 
   async deleteContributor(id: number): Promise<boolean> {
     return this.contributors.delete(id);
+  }
+
+  async updateContributorName(id: number, name: string): Promise<Contributor | null> {
+    const contributor = this.contributors.get(id);
+    if (!contributor) {
+      return null;
+    }
+    
+    const updatedContributor = { ...contributor, name };
+    this.contributors.set(id, updatedContributor);
+    return updatedContributor;
   }
 }
 

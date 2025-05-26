@@ -72,7 +72,7 @@ export default function AddNameForm() {
             >
               <UserPlus className="text-purple-600 w-8 h-8" />
             </motion.div>
-            Join Our Community
+            Valuable Contributors
           </h2>
           
           <Form {...form}>

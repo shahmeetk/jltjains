@@ -147,7 +147,7 @@ export default function BrickWall() {
           {/* Logo Background Pattern - Corporate Jain Allied Science Theme */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="text-9xl font-bold text-blue-900 select-none">JAS</div>
+              <div className="text-6xl font-bold text-blue-900 select-none">Jain Allied Science</div>
             </div>
             <div className="absolute top-4 left-4 text-sm font-semibold text-blue-700 opacity-20">
               JAIN ALLIED SCIENCE
@@ -224,10 +224,10 @@ export default function BrickWall() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <div className="text-6xl font-bold text-blue-600 mb-6">JAS</div>
+                <div className="text-4xl font-bold text-blue-600 mb-6">Jain Allied Science</div>
               </motion.div>
               <p className="text-blue-700 text-xl font-semibold mb-2">Building Excellence Together</p>
-              <p className="text-blue-600 text-lg">Be the first to add your name and help complete our logo!</p>
+              <p className="text-blue-600 text-lg">Be the first to add your name and help build our community wall!</p>
             </div>
           ) : (
             <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-9 lg:grid-cols-10 xl:grid-cols-12 gap-2 relative z-10">

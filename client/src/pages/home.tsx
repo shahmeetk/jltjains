@@ -13,7 +13,6 @@ export default function Home() {
             <Building className="w-12 h-12" />
             Jain Allied Science DMCC
           </h1>
-          <p className="text-blue-100 mt-2 text-lg">Community Builders Initiative</p>
         </div>
       </header>
 

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { ChartLine, Box, Heart } from "lucide-react";
+import { ChartLine, Heart, Trophy, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const MAX_CONTRIBUTORS = 54;
@@ -17,76 +17,100 @@ export default function ProgressSidebar() {
   return (
     <div className="space-y-6">
       {/* Progress Card */}
-      <Card className="border border-gray-200 shadow-lg">
+      <Card className="border border-purple-200 shadow-xl bg-gradient-to-br from-purple-50 to-blue-50">
         <CardContent className="p-6">
           <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-3">
-            <ChartLine className="text-success-green w-5 h-5" />
+            <ChartLine className="text-purple-600 w-5 h-5" />
             Progress
           </h4>
           <div className="text-center">
             <motion.div 
-              className="text-3xl font-bold text-primary-blue mb-2"
+              className="text-4xl font-bold text-purple-600 mb-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
             >
               {isLoading ? "..." : remaining}
             </motion.div>
-            <div className="text-sm text-gray-600 mb-4">Names Remaining</div>
-            <div className="w-full bg-gray-200 rounded-full h-3 mb-3 overflow-hidden">
+            <div className="text-sm text-gray-600 mb-4 font-medium">Names Remaining</div>
+            <div className="w-full bg-gray-200 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
               <motion.div 
-                className="bg-gradient-to-r from-primary-blue to-success-green h-3 rounded-full"
+                className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 h-4 rounded-full relative"
                 initial={{ width: 0 }}
                 animate={{ width: `${percentage}%` }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
+                transition={{ duration: 1.5, ease: "easeOut" }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent rounded-full" />
+              </motion.div>
             </div>
-            <div className="text-xs text-gray-500">
-              {currentCount} / {MAX_CONTRIBUTORS} Contributors
+            <div className="text-xs text-gray-500 flex justify-between">
+              <span>{currentCount} Contributors</span>
+              <span>Goal: {MAX_CONTRIBUTORS}</span>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Ready to Place Card */}
-      <Card className="border border-gray-200 shadow-lg">
+      {/* Achievement Card */}
+      <Card className="border border-orange-200 shadow-xl bg-gradient-to-br from-orange-50 to-yellow-50">
         <CardContent className="p-6">
           <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-3">
-            <Box className="text-brick-red w-5 h-5" />
-            Ready to Place
+            <Trophy className="text-orange-600 w-5 h-5" />
+            Achievement
           </h4>
-          <div className="space-y-3">
-            <motion.div 
-              className="bg-yellow-50 border-2 border-dashed border-yellow-300 rounded-lg p-3 text-center opacity-70"
-              animate={{ y: [0, -10, 0] }}
+          <div className="text-center">
+            <motion.div
+              animate={{ rotate: [0, 5, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="text-yellow-700 font-medium text-sm">Your Name Here</span>
+              <Trophy className="w-12 h-12 mx-auto mb-3 text-orange-500" />
             </motion.div>
-            <motion.div 
-              className="bg-blue-50 border-2 border-dashed border-blue-300 rounded-lg p-3 text-center opacity-50"
-              animate={{ opacity: [0.3, 0.7, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="text-blue-700 font-medium text-sm">Next Contributor</span>
-            </motion.div>
+            <p className="text-sm text-gray-700 font-medium">
+              {percentage >= 100 ? "🎉 Wall Complete!" : 
+               percentage >= 75 ? "🌟 Almost There!" :
+               percentage >= 50 ? "🚀 Halfway Mark!" :
+               percentage >= 25 ? "💪 Great Start!" :
+               "🌱 Just Beginning!"}
+            </p>
+            <div className="mt-2 text-xs text-orange-600 font-semibold">
+              {Math.round(percentage)}% Complete
+            </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Motivational Message */}
-      <Card className="bg-gradient-to-br from-primary-blue to-blue-700 text-white border border-gray-200 shadow-lg">
+      <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 text-white border border-gray-200 shadow-xl">
         <CardContent className="p-6">
           <div className="text-center">
             <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Heart className="w-8 h-8 mx-auto mb-3 opacity-80" />
+              <Heart className="w-10 h-10 mx-auto mb-4 opacity-90" />
             </motion.div>
-            <p className="text-sm leading-relaxed font-medium">
+            <p className="text-sm leading-relaxed font-medium text-white/95">
               "Together, we're building the future of Jain Allied Science DMCC."
             </p>
+            <motion.div 
+              className="mt-3 flex justify-center gap-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1 h-1 bg-white/60 rounded-full"
+                  animate={{ scale: [0, 1, 0] }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    delay: i * 0.2 
+                  }}
+                />
+              ))}
+            </motion.div>
           </div>
         </CardContent>
       </Card>

@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { ChartLine, Heart, Trophy, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+import { useQuery } from "@tanstack/react-query";
+import { Users, Target, Trophy, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+
 const MAX_CONTRIBUTORS = 54;
 
 export default function ProgressSidebar() {
@@ -50,6 +55,65 @@ export default function ProgressSidebar() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Statistics Cards */}
+      <div className="space-y-4">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Users className="w-4 h-4 text-blue-600" />
+              Contributors
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-blue-600">{currentCount}</div>
+            <p className="text-xs text-gray-600">names on the wall</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Target className="w-4 h-4 text-green-600" />
+              Remaining
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">{remaining}</div>
+            <p className="text-xs text-gray-600">spots available</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-purple-600" />
+              Progress
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-purple-600">{percentage.toFixed(1)}%</div>
+            <p className="text-xs text-gray-600">completion</p>
+          </CardContent>
+        </Card>
+
+        {currentCount >= MAX_CONTRIBUTORS && (
+          <Card className="bg-green-50 border-green-200">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2 text-green-700">
+                <Trophy className="w-4 h-4" />
+                Goal Achieved!
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-green-700">
+                Congratulations! The community wall is complete.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
 
 
 

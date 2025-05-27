@@ -5,7 +5,7 @@ import path from 'path'
 // Production configuration for GitHub Pages
 export default defineConfig({
   plugins: [react()],
-  base: '/jltjains/',
+  base: '/jltjains.github.io/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

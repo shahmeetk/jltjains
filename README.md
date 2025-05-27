@@ -52,11 +52,43 @@ npm install
 
 3. Start the development server:
 
+   **Option A: Quick Start (Recommended)**
+
+   ```bash
+   # Linux/macOS
+   ./start-local.sh
+
+   # Windows
+   start-local.bat
+   ```
+
+   **Option B: Manual Start**
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5000](http://localhost:5000) in your browser
+
+### Alternative Development Setup
+
+If you want to run the client and server separately:
+
 ```bash
-npm run dev
+# Terminal 1 - Start the API server
+PORT=5000 npm run dev
+
+# Terminal 2 - Start the client development server (optional)
+npm run dev:client
 ```
 
-4. Open [http://localhost:5173](http://localhost:5173) in your browser
+### Local Development Features
+
+- **Hot Module Replacement (HMR)**: Instant updates during development
+- **API Server**: Full-featured Express server with database support
+- **TypeScript**: Full type safety across client and server
+- **Local Storage Fallback**: Automatic fallback for production builds
+- **Custom Port**: Use `PORT=5001 npm run dev` to run on different port
 
 ## 🧪 Testing GitHub Pages Deployment Locally
 

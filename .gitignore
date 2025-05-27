@@ -106,8 +106,6 @@ temp/
 *.sqlite3
 
 # Local development files
-.replit
-replit.nix
 server/public
 vite.config.ts.*
 *.tar.gz

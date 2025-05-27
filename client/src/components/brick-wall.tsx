@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { Layers, Hammer, Sparkles, Settings, Trash2, Edit2, Check, X, Zap, Maximize, Minimize } from "lucide-react";
+import { Layers, Hammer, Sparkles, Check, X, Maximize, Minimize } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,14 +27,12 @@ const brickColors = [
 
 const getBrickColor = (index: number) => brickColors[index % brickColors.length];
 
-
-
 export default function BrickWall() {
   const { data: contributors = [], isLoading } = useQuery<Contributor[]>({
     queryKey: ["/api/contributors"],
   });
 
-  const [showAdmin, setShowAdmin] = useState(false);
+
   const [sparklingBrick, setSparklingBrick] = useState<number | null>(null);
   const [editingBrick, setEditingBrick] = useState<number | null>(null);
   const [editingName, setEditingName] = useState("");
@@ -75,28 +73,6 @@ export default function BrickWall() {
 
     previousContributorsRef.current = contributors;
   }, [contributors]);
-
-  const deleteContributorMutation = useMutation({
-    mutationFn: async (id: number) => {
-      const response = await apiRequest("DELETE", `/api/contributors/${id}`);
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/contributors"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/contributors/count"] });
-      toast({
-        title: "Contributor removed",
-        description: "The name has been successfully removed from the wall.",
-      });
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to remove contributor",
-        variant: "destructive",
-      });
-    },
-  });
 
   const updateContributorMutation = useMutation({
     mutationFn: async ({ id, name }: { id: number; name: string }) => {
@@ -139,9 +115,7 @@ export default function BrickWall() {
     );
   }
 
-  const handleDeleteContributor = async (id: number) => {
-    deleteContributorMutation.mutate(id);
-  };
+
 
   const handleSparkle = (id: number) => {
     setSparklingBrick(id);
@@ -173,7 +147,7 @@ export default function BrickWall() {
           <div className="flex items-center gap-4">
             {/* Jain Allied Science Logo */}
             <img
-              src={`${import.meta.env.BASE_URL}jlt-logo.png`}
+              src="/jlt-logo.png"
               alt="JLT Logo"
               className="w-12 h-12 object-contain"
             />
@@ -207,7 +181,7 @@ export default function BrickWall() {
               className="flex flex-col items-center"
             >
               <img
-                src={`${import.meta.env.BASE_URL}jlt-logo.png`}
+                src="/jlt-logo.png"
                 alt="JLT Logo"
                 className="w-24 h-24 object-contain"
               />
@@ -344,33 +318,7 @@ export default function BrickWall() {
                       </div>
                     )}
 
-                    {/* Admin Controls */}
-                    {showAdmin && editingBrick !== contributor.id && (
-                      <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="absolute -top-1 -left-1 w-5 h-5 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-blue-300 hover:text-blue-100"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleEditStart(contributor.id, contributor.name);
-                          }}
-                        >
-                          <Edit2 className="w-3 h-3" />
-                        </Button>
-                        <Button
-                          variant="destructive"
-                          size="sm"
-                          className="absolute -top-1 -right-1 w-5 h-5 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteContributor(contributor.id);
-                          }}
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
-                      </>
-                    )}
+
 
                     {/* Enhanced Sparkle Effect */}
                     {sparklingBrick === contributor.id && (
@@ -507,7 +455,7 @@ export default function BrickWall() {
                   }}
                 >
                   <img
-                    src={`${import.meta.env.BASE_URL}jlt-logo.png`}
+                    src="/jlt-logo.png"
                     alt="JLT Logo"
                     className="w-14 h-14 object-contain opacity-45"
                   />
@@ -518,7 +466,7 @@ export default function BrickWall() {
             {/* Center logo and text */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
               <img
-                src={`${import.meta.env.BASE_URL}jlt-logo.png`}
+                src="/jlt-logo.png"
                 alt="JLT Logo"
                 className="w-28 h-28 object-contain opacity-80"
               />
@@ -623,7 +571,7 @@ export default function BrickWall() {
                 className="flex flex-col items-center"
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}jlt-logo.png`}
+                  src="/jlt-logo.png"
                   alt="JLT Logo"
                   className="w-20 h-20 object-contain"
                 />
@@ -770,33 +718,7 @@ export default function BrickWall() {
                         </div>
                       )}
 
-                      {/* Admin Controls */}
-                      {showAdmin && editingBrick !== contributor.id && (
-                        <>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="absolute -top-1 -left-1 w-4 h-4 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-blue-300 hover:text-blue-100"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleEditStart(contributor.id, contributor.name);
-                            }}
-                          >
-                            <Edit2 className="w-2 h-2" />
-                          </Button>
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            className="absolute -top-1 -right-1 w-4 h-4 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleDeleteContributor(contributor.id);
-                            }}
-                          >
-                            <Trash2 className="w-2 h-2" />
-                          </Button>
-                        </>
-                      )}
+
 
                       {/* Enhanced Sparkle Effect */}
                       {sparklingBrick === contributor.id && (

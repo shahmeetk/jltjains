@@ -1,9 +1,16 @@
 import { Pool, neonConfig } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
-import ws from "ws";
 import * as schema from "@shared/schema";
 
-neonConfig.webSocketConstructor = ws;
+// Only configure WebSocket constructor if ws is available
+if (typeof WebSocket === 'undefined') {
+  try {
+    const ws = require("ws");
+    neonConfig.webSocketConstructor = ws;
+  } catch (e) {
+    // ws not available, skip configuration
+  }
+}
 
 if (!process.env.DATABASE_URL) {
   throw new Error(

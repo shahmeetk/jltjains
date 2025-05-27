@@ -11,7 +11,7 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-4">
             <img
-              src="/jlt-logo.png"
+              src={`${import.meta.env.BASE_URL}jlt-logo.png`}
               alt="JLT Logo"
               className="w-16 h-16 object-contain"
             />

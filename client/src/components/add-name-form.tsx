@@ -24,6 +24,10 @@ export default function AddNameForm() {
       return response.json();
     },
     onSuccess: () => {
+      // Immediately update queries to show the new brick in the wall
+      queryClient.invalidateQueries({ queryKey: ["/api/contributors"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/contributors/count"] });
+
       // Show brick creation animation first
       setCreatedBrickName(name);
       setShowBrickCreation(true);
@@ -33,10 +37,6 @@ export default function AddNameForm() {
       setTimeout(() => {
         setShowBrickCreation(false);
         setShowSuccessAnimation(true);
-
-        // Update queries to show the new brick in the wall
-        queryClient.invalidateQueries({ queryKey: ["/api/contributors"] });
-        queryClient.invalidateQueries({ queryKey: ["/api/contributors/count"] });
 
         setName("");
 

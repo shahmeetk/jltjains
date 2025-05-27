@@ -173,7 +173,7 @@ export default function BrickWall() {
           <div className="flex items-center gap-4">
             {/* Jain Allied Science Logo */}
             <img
-              src="/jlt-logo.png"
+              src={`${import.meta.env.BASE_URL}jlt-logo.png`}
               alt="JLT Logo"
               className="w-12 h-12 object-contain"
             />
@@ -207,7 +207,7 @@ export default function BrickWall() {
               className="flex flex-col items-center"
             >
               <img
-                src="/jlt-logo.png"
+                src={`${import.meta.env.BASE_URL}jlt-logo.png`}
                 alt="JLT Logo"
                 className="w-24 h-24 object-contain"
               />
@@ -507,7 +507,7 @@ export default function BrickWall() {
                   }}
                 >
                   <img
-                    src="/jlt-logo.png"
+                    src={`${import.meta.env.BASE_URL}jlt-logo.png`}
                     alt="JLT Logo"
                     className="w-14 h-14 object-contain opacity-45"
                   />
@@ -518,7 +518,7 @@ export default function BrickWall() {
             {/* Center logo and text */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
               <img
-                src="/jlt-logo.png"
+                src={`${import.meta.env.BASE_URL}jlt-logo.png`}
                 alt="JLT Logo"
                 className="w-28 h-28 object-contain opacity-80"
               />
@@ -623,7 +623,7 @@ export default function BrickWall() {
                 className="flex flex-col items-center"
               >
                 <img
-                  src="/jlt-logo.png"
+                  src={`${import.meta.env.BASE_URL}jlt-logo.png`}
                   alt="JLT Logo"
                   className="w-20 h-20 object-contain"
                 />

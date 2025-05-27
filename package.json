@@ -12,7 +12,7 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "preview": "vite preview",
-    "preview:gh-pages": "cd client && vite preview --config ../vite.config.production.ts",
+    "preview:gh-pages": "node preview-server.js",
     "deploy:gh-pages": "npm run build:gh-pages && gh-pages -d client/dist",
     "test:local": "npm run build:gh-pages && npm run preview:gh-pages"
   },

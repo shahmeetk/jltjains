@@ -1,4 +1,3 @@
-
 # JLT Jain Sangh Dubai - Community Wall
 
 A dynamic, interactive community wall application built for JLT Jain Sangh Dubai and Jain Allied Science DMCC. This application allows community members to add their names to a beautiful, animated brick wall display.

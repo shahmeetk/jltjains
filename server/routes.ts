@@ -29,12 +29,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/contributors", async (req, res) => {
     try {
       const validatedData = insertContributorSchema.parse(req.body);
-      
-      // Check if contributor already exists
-      const existingContributor = await storage.getContributorByName(validatedData.name);
-      if (existingContributor) {
-        return res.status(400).json({ message: "This name has already been added to the wall" });
-      }
 
       // Check if we've reached the maximum number of contributors
       const currentCount = await storage.getContributorCount();
@@ -46,7 +40,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(201).json(contributor);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const errorMessage = error.errors[0]?.message || "Invalid name format";
+        const errorMessage = error.errors[0]?.message || "Invalid input format";
         return res.status(400).json({ message: errorMessage });
       }
       res.status(500).json({ message: "Failed to add contributor" });
@@ -86,8 +80,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Basic validation for name
-      if (name.length < 2 || name.length > 30) {
-        return res.status(400).json({ message: "Name must be between 2 and 30 characters" });
+      if (name.length < 1 || name.length > 200) {
+        return res.status(400).json({ message: "Name or URL must be between 1 and 200 characters" });
       }
 
       const updatedContributor = await storage.updateContributorName(id, name);

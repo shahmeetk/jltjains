@@ -23,7 +23,7 @@
   --destructive-foreground: 60 9.1% 97.8%;
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
-  
+
   /* Custom colors for the brick wall theme */
   --primary-blue: 213 90% 54%; /* #2563EB */
   --brick-red: 0 74% 42%; /* #DC2626 */
@@ -75,23 +75,23 @@
   .primary-blue {
     color: hsl(var(--primary-blue));
   }
-  
+
   .bg-primary-blue {
     background-color: hsl(var(--primary-blue));
   }
-  
+
   .text-brick-red {
     color: hsl(var(--brick-red));
   }
-  
+
   .border-brick-red {
     border-color: hsl(var(--brick-red));
   }
-  
+
   .text-success-green {
     color: hsl(var(--success-green));
   }
-  
+
   .bg-success-green {
     background-color: hsl(var(--success-green));
   }
@@ -101,34 +101,54 @@
   .animate-slide-in {
     animation: slideIn 0.6s ease-out;
   }
-  
+
   .animate-highlight {
     animation: highlight 2s ease-in-out;
   }
-  
+
   .animate-float {
     animation: float 2s ease-in-out infinite;
   }
-  
+
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   .animate-brick-fly-in {
     animation: brickFlyIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  
+
+  .animate-brick-fly-in-dynamic {
+    animation: brickFlyInDynamic 3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
   .animate-sparkle {
     animation: sparkle 1.5s ease-in-out;
   }
-  
+
   .animate-bounce-gentle {
     animation: bounceGentle 0.8s ease-out;
   }
-  
+
+  .animate-construction-glow {
+    animation: constructionGlow 2s ease-in-out infinite;
+  }
+
+  .animate-brick-building {
+    animation: brickBuilding 1.5s ease-out;
+  }
+
+  .animate-name-shine {
+    animation: nameShine 2s ease-in-out infinite;
+  }
+
+  .animate-new-name-highlight {
+    animation: newNameHighlight 4s ease-in-out;
+  }
+
   .brick-pattern {
-    background-image: 
-      linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%), 
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
       linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
     background-size: 20px 20px;
   }
@@ -196,5 +216,132 @@
   }
   60% {
     transform: translateY(-5px);
+  }
+}
+
+@keyframes brickFlyInDynamic {
+  0% {
+    opacity: 0;
+    transform: translate(-400px, -300px) rotate(-360deg) scale(0.1);
+  }
+  10% {
+    opacity: 0.2;
+    transform: translate(-350px, -260px) rotate(-320deg) scale(0.2);
+  }
+  20% {
+    opacity: 0.4;
+    transform: translate(-280px, -210px) rotate(-270deg) scale(0.4);
+  }
+  35% {
+    opacity: 0.6;
+    transform: translate(-200px, -150px) rotate(-200deg) scale(0.6);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translate(-120px, -90px) rotate(-120deg) scale(0.75);
+  }
+  65% {
+    opacity: 0.85;
+    transform: translate(-60px, -45px) rotate(-60deg) scale(0.85);
+  }
+  80% {
+    opacity: 0.95;
+    transform: translate(-20px, -15px) rotate(-20deg) scale(0.95);
+  }
+  95% {
+    opacity: 1;
+    transform: translate(-3px, -2px) rotate(-3deg) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes constructionGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(147, 197, 253, 0.4);
+    border-color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes brickBuilding {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-5px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nameShine {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 15px rgba(255, 215, 0, 0.5),
+      0 0 20px rgba(255, 215, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.9);
+    transform: scale(1.01);
+  }
+}
+
+@keyframes newNameHighlight {
+  0% {
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.8);
+    transform: scale(1);
+  }
+  25% {
+    text-shadow:
+      0 0 12px rgba(255, 215, 0, 0.8),
+      0 0 18px rgba(255, 215, 0, 0.6),
+      0 0 25px rgba(255, 215, 0, 0.4),
+      0 0 30px rgba(255, 255, 255, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.9);
+    transform: scale(1.04);
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(255, 215, 0, 0.9),
+      0 0 22px rgba(255, 215, 0, 0.7),
+      0 0 30px rgba(255, 215, 0, 0.5),
+      0 0 35px rgba(255, 255, 255, 0.9),
+      0 2px 5px rgba(0, 0, 0, 1);
+    transform: scale(1.06);
+  }
+  75% {
+    text-shadow:
+      0 0 12px rgba(255, 215, 0, 0.6),
+      0 0 18px rgba(255, 215, 0, 0.4),
+      0 0 25px rgba(255, 215, 0, 0.3),
+      0 0 30px rgba(255, 255, 255, 0.6),
+      0 2px 4px rgba(0, 0, 0, 0.9);
+    transform: scale(1.03);
+  }
+  100% {
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.8);
+    transform: scale(1);
   }
 }

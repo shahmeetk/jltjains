@@ -15,7 +15,7 @@ A dynamic, interactive community wall application built for JLT Jain Sangh Dubai
 
 ## 🚀 Live Demo
 
-Visit the live application: [https://jltjains.github.io](https://jltjains.github.io)
+Visit the live application: [https://shahmeetk.github.io/jltjains.github.io/](https://shahmeetk.github.io/jltjains.github.io/)
 
 ## 🛠️ Technology Stack
 
@@ -39,7 +39,7 @@ Visit the live application: [https://jltjains.github.io](https://jltjains.github
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/jltjains/jltjains.github.io.git
+git clone https://github.com/shahmeetk/jltjains.github.io.git
 cd jltjains.github.io
 ```
 

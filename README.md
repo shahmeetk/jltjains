@@ -16,6 +16,8 @@ A dynamic, interactive community wall application built for JLT Jain Sangh Dubai
 
 Visit the live application: [https://shahmeetk.github.io/jltjains/](https://shahmeetk.github.io/jltjains/)
 
+> 🚀 **Status**: Live and fully functional!
+
 ## 🛠️ Technology Stack
 
 - **Frontend**: React 18 + TypeScript

@@ -58,6 +58,27 @@ npm run dev
 
 4. Open [http://localhost:5173](http://localhost:5173) in your browser
 
+## 🧪 Testing GitHub Pages Deployment Locally
+
+To test the exact same build that gets deployed to GitHub Pages:
+
+```bash
+# Test the complete deployment process
+node test-deployment.js
+```
+
+Or run individual steps:
+
+```bash
+# Build for GitHub Pages
+npm run build:gh-pages
+
+# Preview the built site locally
+npm run preview:gh-pages
+```
+
+The preview will be available at [http://localhost:3000/jltjains/](http://localhost:3000/jltjains/)
+
 ## 📦 Production Build
 
 ### For GitHub Pages Deployment

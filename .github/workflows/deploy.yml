@@ -27,8 +27,15 @@ jobs:
     - name: Build for production
       run: npm run build:gh-pages
 
+    - name: Add .nojekyll file
+      run: touch client/dist/.nojekyll
+
+    - name: List build output
+      run: ls -la client/dist/
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./client/dist
+        force_orphan: true

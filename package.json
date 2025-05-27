@@ -5,13 +5,16 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
+    "dev:client": "cd client && vite",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:gh-pages": "vite build --config vite.config.production.ts",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "preview": "vite preview",
-    "deploy:gh-pages": "npm run build:gh-pages && gh-pages -d dist"
+    "preview:gh-pages": "cd client && vite preview --config ../vite.config.production.ts",
+    "deploy:gh-pages": "npm run build:gh-pages && gh-pages -d client/dist",
+    "test:local": "npm run build:gh-pages && npm run preview:gh-pages"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
